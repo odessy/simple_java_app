@@ -93,15 +93,18 @@ public class RecordTableView extends View implements MouseListener {
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource().equals(addRecordBtn)) {
 			new RecordInsertView(controller);
-		} else if(event.getSource().equals(updateRecordBtn)) {
-			if(Integer.parseInt(updateRecordTxt.getText()) > 0) {
-				controller.updateRecord(updateRecordTxt.getText());
+		} else
+			if(!updateRecordTxt.getText().isEmpty()){
+				if(event.getSource().equals(updateRecordBtn)) {
+					if(Integer.parseInt(updateRecordTxt.getText()) > 0) {
+						controller.updateRecord(updateRecordTxt.getText());
+					}
+				} else if(event.getSource().equals(deleteRecordBtn)) {
+					if(Integer.parseInt(updateRecordTxt.getText()) > 0) {
+						controller.deleteRecord(updateRecordTxt.getText());
+					}
+				}
 			}
-		} else if(event.getSource().equals(deleteRecordBtn)) {
-			if(Integer.parseInt(updateRecordTxt.getText()) > 0) {
-				controller.deleteRecord(updateRecordTxt.getText());
-			}
-		}
 	}
 
 	@Override
