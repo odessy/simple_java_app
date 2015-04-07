@@ -24,18 +24,15 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 	}
-	
 	public String coats(String val) {
 		return "'"+val+"'";
 	}
-	
 	public void insert(String student_id, String student_name, String assignment_id, String  assignment_grade) throws SQLException {
 		String sql = "INSERT INTO assignment (student_id, student_name, assignment_id, assignment_grade ) VALUES("+ 
 					coats(student_id)+","+coats(student_name)+","+coats(assignment_id)+","+coats(assignment_grade)+
 					");";
 		statement.executeUpdate(sql);
 	}
-	
 	public void update(String id, String student_id, String student_name, 
 			String assignment_id, String  assignment_grade) throws SQLException {
 		String sql = "UPDATE assignment SET "+
@@ -44,12 +41,10 @@ public class DatabaseManager {
 			";";
 		statement.executeUpdate(sql);
 	}
-	
 	public void delete(String id) throws SQLException {
 		String sql = "DELETE FROM assignment WHERE id="+coats(id)+";";
 		statement.executeUpdate(sql);
 	}
-	
 	public Object [] readOne(ResultSet resultSet) throws SQLException{
 		Object [] objs = new Object[5];
 		int id = resultSet.getInt("id");
@@ -64,7 +59,6 @@ public class DatabaseManager {
 		objs[4] = assignment_grade;
 		return objs;	
 	}
-	
 	public Object [] read(String id) throws SQLException {
 		String sql = "SELECT * FROM assignment WHERE id="+coats(id)+";";
 		resultSet = statement.executeQuery(sql);
@@ -73,7 +67,6 @@ public class DatabaseManager {
 		}
 		return null;
 	}
-
 	public Object[] readAll() throws SQLException {
 		String sql = "SELECT * FROM assignment;";
 		resultSet = statement.executeQuery(sql);
